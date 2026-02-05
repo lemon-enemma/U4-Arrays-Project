@@ -124,6 +124,10 @@ public class Deck {
         }
     }
 
+    public String getType(){
+        return type;
+    }
+
 }
 
 
