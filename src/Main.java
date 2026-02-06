@@ -24,6 +24,9 @@ public class Main {
         int twoPair = 0;
         int onePair = 0;
         int highCard = 0;
+        int totalVal = 0;
+        Deck[] allHands = new Deck[decks.length];
+        int index = 0;
         for (String deck: decks){
             String[] cards = deck.split(",");
             String bidString = cards[4].substring(cards[4].length()-1);
@@ -33,6 +36,7 @@ public class Main {
             int bidInt = Integer.parseInt(bidString);
             cards[4] = cards[4].substring(0, cards[4].lastIndexOf("|"));
             Deck d = new Deck(cards);
+            allHands[index] = d;
             d.findType();
             if (d.getType() == 6){
                 five++;
@@ -45,14 +49,18 @@ public class Main {
                 three++;
             } else if (d.getType() == 2) {
                 twoPair++;
-            } else if (d.getType().equals("One pair")) {
+            } else if (d.getType() == 1) {
                 onePair++;
             } else {
                 highCard++;
             }
-
+            index++;
         }
+
+        // hooray you now have an array (allHands) that has every Deck object in it
+
         System.out.println("Number of five of a kind hands: " + five + "\nNumber of full house hands: " + fullH + "\nNumber of four of a kind hands: " + four + "\nNumber of three of a kind hands: " + three + "\nNumber of two pair hands: " + twoPair + "\nNumber of one pair hands: " + onePair + "\nNumber of high card hands: " + highCard);
-            }
+        System.out.println("Total Bid Value: " + totalVal);
+    }
 
         }

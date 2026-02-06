@@ -20,7 +20,7 @@ public class Deck {
                 numRepeats[i] = numMatches;
             }
         }
-        if (fiveOfKind()){
+        if (fiveOfKind()) {
             type = 6;
         } else if (fourofKind()) {
             type = 5;
@@ -32,8 +32,7 @@ public class Deck {
             type = 2;
         } else if (onePair()) {
             type = 1;
-        }
-        else {
+        } else {
             type = 0;
         }
     }
@@ -101,12 +100,11 @@ public class Deck {
                 inc++;
             }
         }
-            if (inc == 4){
-                return true;
-            }
-            else {
-                return false;
-            }
+        if (inc == 4) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public Boolean onePair() {
@@ -116,22 +114,19 @@ public class Deck {
                 inc++;
             }
         }
-        if (inc == 2){
+        if (inc == 2) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }
 
-    public void printTypes (){
-
-    }
-
-    public int getType(){
+    public int getType() {
         return type;
     }
-
 }
+
+
+
 
 
