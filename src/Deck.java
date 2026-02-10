@@ -4,10 +4,13 @@ public class Deck {
     private String[] cards;
     private int type;
     private int[] numRepeats;
+    private int rank;
+    private int bidVal;
 
     public Deck(String[] c) {
         cards = c;
         numRepeats = new int[5];
+        rank = 1;
     }
 
     public void findType() {
@@ -123,6 +126,18 @@ public class Deck {
 
     public int getType() {
         return type;
+    }
+
+    public void setRank(int r){
+        rank = r;
+    }
+
+    public String[] getCards(){
+        return cards;
+    }
+
+    public void setBidVal(int b){
+        bidVal = b;
     }
 }
 

@@ -36,6 +36,7 @@ public class Main {
             int bidInt = Integer.parseInt(bidString);
             cards[4] = cards[4].substring(0, cards[4].lastIndexOf("|"));
             Deck d = new Deck(cards);
+            d.setBidVal(bidInt);
             allHands[index] = d;
             d.findType();
             if (d.getType() == 6){
@@ -56,8 +57,45 @@ public class Main {
             }
             index++;
         }
+        for (int i = 0; i < allHands.length; i++){
+            int rankInc = 1;
+            for (int j = 0; j < allHands.length; j++){
+                if (i != j && allHands[i].getType() > allHands[j].getType()){
+                    rankInc++;
+                } else if (i!=j && allHands[i].getType() == allHands[j].getType()) {
+                    String[] d = allHands[i].getCards();
+                    String[] e = allHands[j].getCards();
+                    for (int k = 0; k < d.length; k++) {
+                        if (!d[k].equals(e[k])) {
+                            if (d[k].equals("Ace")) {
+                                if (!e[k].equals("Ace")) {
+                                    rankInc++;
+                                }
+                            } else if (d[k].equals("King")) {
+                                if (!e[k].equals("Ace")) {
+                                    rankInc++;
+                                }
+                            } else if (d[k].equals("Queen")) {
+                                if (!e[k].equals("Ace") && !e[k].equals("King")){
+                                    rankInc++;
+                                }
+                            } else if (d[k].equals("Jack")) {
+                                if (!e[k].equals("Ace") && !e[k].equals("King") && !e[k].equals("Queen")){
+                                    rankInc++;
+                                }
+                            }
+                            else if (!e[k].equals("Ace") && !e[k].equals("King") && !e[k].equals("Queen") && !e[k].equals("Jack")){
+                                if (Integer.parseInt(d[k]) > Integer.parseInt(e[k])){
+                                    rankInc++;
+                                }
+                            }
+                        }
+                    }
 
-        // hooray you now have an array (allHands) that has every Deck object in it
+
+                }
+            }
+        }
 
         System.out.println("Number of five of a kind hands: " + five + "\nNumber of full house hands: " + fullH + "\nNumber of four of a kind hands: " + four + "\nNumber of three of a kind hands: " + three + "\nNumber of two pair hands: " + twoPair + "\nNumber of one pair hands: " + onePair + "\nNumber of high card hands: " + highCard);
         System.out.println("Total Bid Value: " + totalVal);
