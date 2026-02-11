@@ -59,42 +59,54 @@ public class Main {
         }
         for (int i = 0; i < allHands.length; i++){
             int rankInc = 1;
+            System.out.println(allHands[i].toString() + " START");
             for (int j = 0; j < allHands.length; j++){
+                Boolean done = false;
                 if (i != j && allHands[i].getType() > allHands[j].getType()){
                     rankInc++;
+                    System.out.println(i + "+");
                 } else if (i!=j && allHands[i].getType() == allHands[j].getType()) {
                     String[] d = allHands[i].getCards();
                     String[] e = allHands[j].getCards();
-                    for (int k = 0; k < d.length; k++) {
+                    System.out.println(Arrays.toString(d) + " is same type as " + Arrays.toString(e));
+                    for (int k = 0; !done && k<d.length; k++) {
+                        System.out.println(d[k] + "to" + e[k]);
                         if (!d[k].equals(e[k])) {
                             if (d[k].equals("Ace")) {
-                                if (!e[k].equals("Ace")) {
                                     rankInc++;
-                                }
+                                    System.out.println("+ace");
+                                    done = true;
                             } else if (d[k].equals("King")) {
                                 if (!e[k].equals("Ace")) {
                                     rankInc++;
+                                    System.out.println("king");
+                                    done = true;
                                 }
                             } else if (d[k].equals("Queen")) {
                                 if (!e[k].equals("Ace") && !e[k].equals("King")){
                                     rankInc++;
+                                    System.out.println( "+ queen");
+                                    done = true;
                                 }
                             } else if (d[k].equals("Jack")) {
                                 if (!e[k].equals("Ace") && !e[k].equals("King") && !e[k].equals("Queen")){
                                     rankInc++;
+                                    System.out.println("+ jack");
+                                    done = true;
                                 }
                             }
                             else if (!e[k].equals("Ace") && !e[k].equals("King") && !e[k].equals("Queen") && !e[k].equals("Jack")){
                                 if (Integer.parseInt(d[k]) > Integer.parseInt(e[k])){
                                     rankInc++;
+                                    System.out.println(Arrays.toString(d) + "+");
+                                    done = true;
                                 }
                             }
                         }
                     }
-
-
                 }
             }
+            System.out.println(rankInc);
         }
 
         System.out.println("Number of five of a kind hands: " + five + "\nNumber of full house hands: " + fullH + "\nNumber of four of a kind hands: " + four + "\nNumber of three of a kind hands: " + three + "\nNumber of two pair hands: " + twoPair + "\nNumber of one pair hands: " + onePair + "\nNumber of high card hands: " + highCard);

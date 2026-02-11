@@ -139,6 +139,9 @@ public class Deck {
     public void setBidVal(int b){
         bidVal = b;
     }
+    public String toString(){
+        return Arrays.toString(cards);
+    }
 }
 
 
