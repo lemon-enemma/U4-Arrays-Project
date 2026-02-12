@@ -40,6 +40,30 @@ public class Deck {
         }
     }
 
+    public void findWildType(){
+        int numJacks = 0;
+        for (int i = 0; i < cards.length; i++) {
+            int numMatches = 1;
+            if (cards[i].equals("Jack")){
+                numJacks++;
+            }
+            for (int j = 0; j < cards.length; j++) {
+                if (cards[i].equals(cards[j]) && i != j) {
+                    numMatches++;
+                }
+                numRepeats[i] = numMatches;
+            }
+        }
+        int largestRepeat = 0;
+        for (int repeat:numRepeats){
+            if (repeat > largestRepeat){
+                largestRepeat = repeat;
+            }
+        }
+
+
+    }
+
     public Boolean fiveOfKind() {
         Boolean b = false;
         for (int repeat : numRepeats) {

@@ -120,8 +120,12 @@ public class Main {
             totalVal += (hand.getBidVal() * hand.getRank());
         }
 
+        //pt 3; make new deck!
+        for (int i = 0; i < allHands.length; i++){
+            int rankInc = 1;
+
+        }
         System.out.println("Number of five of a kind hands: " + five + "\nNumber of full house hands: " + fullH + "\nNumber of four of a kind hands: " + four + "\nNumber of three of a kind hands: " + three + "\nNumber of two pair hands: " + twoPair + "\nNumber of one pair hands: " + onePair + "\nNumber of high card hands: " + highCard);
         System.out.println("Total Bid Value: " + totalVal);
     }
-
         }
