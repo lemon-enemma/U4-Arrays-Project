@@ -131,13 +131,19 @@ public class Deck {
     public void setRank(int r){
         rank = r;
     }
-
+    public int getRank(){
+        return rank;
+    }
     public String[] getCards(){
         return cards;
     }
 
     public void setBidVal(int b){
         bidVal = b;
+    }
+
+    public int getBidVal(){
+        return bidVal;
     }
     public String toString(){
         return Arrays.toString(cards);
