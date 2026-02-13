@@ -6,6 +6,8 @@ public class Deck {
     private int[] numRepeats;
     private int rank;
     private int bidVal;
+    private int wildType;
+    private int wildRank;
 
     public Deck(String[] c) {
         cards = c;
@@ -48,20 +50,82 @@ public class Deck {
                 numJacks++;
             }
             for (int j = 0; j < cards.length; j++) {
-                if (cards[i].equals(cards[j]) && i != j) {
+                if (cards[i].equals(cards[j]) && i != j){
                     numMatches++;
                 }
                 numRepeats[i] = numMatches;
             }
         }
-        int largestRepeat = 0;
-        for (int repeat:numRepeats){
-            if (repeat > largestRepeat){
-                largestRepeat = repeat;
+        if (fiveOfKind()){
+            wildType = type;
+        } else if (fourofKind()) {
+            if (numJacks == 1 || numJacks == 4){
+                wildType = 6;
+            }
+            else {
+                wildType = type;
+            }
+        } else if (fullHouse()) {
+            if (numJacks == 3 || numJacks == 2){
+                wildType = 6;
+            }
+            else {
+                wildType =  type;
+            }
+        } else if (threeofKind()) {
+            if (numJacks == 3 || numJacks == 2){
+                wildType = 6;
+            }
+            else if (numJacks == 1){
+                wildType = 5;
+            }
+            else {
+                wildType = type;
+            }
+        } else if (twoPair()) {
+            if (numJacks == 2){
+                wildType = 5;
+            }
+            else if (numJacks == 1){
+                wildType = 4;
+            }
+            else {
+                wildType = type;
+            }
+        } else if (onePair()) {
+            if (numJacks == 2 || numJacks == 1){
+                wildType = 3;
+            }
+            else {
+                wildType = type;
             }
         }
+        else {
+            if (numJacks == 1){
+                wildType = 1;
+            }
+            else {
+                wildType = type;
+            }
+        }
+    }
 
-
+    public static int wildCardStrength (String card){
+        if (card.equals("Ace")){
+            return 13;
+        }
+        else if (card.equals("King")){
+            return 12;
+        }
+        else if (card.equals("Queen")){
+            return 11;
+        }
+        else if (!card.equals("Jack")){
+            return Integer.parseInt(card);
+        }
+        else {
+            return 0;
+        }
     }
 
     public Boolean fiveOfKind() {
@@ -169,8 +233,20 @@ public class Deck {
     public int getBidVal(){
         return bidVal;
     }
-    public String toString(){
+    public String stringCards(){
         return Arrays.toString(cards);
+    }
+
+    public int getWildType(){
+        return wildType;
+    }
+
+    public void setWildRank(int w){
+        wildRank = w;
+    }
+
+    public int getWildRank(){
+        return wildRank;
     }
 }
 
